@@ -36,9 +36,9 @@ public class ImageRepositoryImplTest {
     public void TestCrudImage() {
 
         assertNull("Image is present ", imageRepository.getById(newIm.getId()));
-        Integer newId = imageRepository.saveImage(newIm);
+        imageRepository.saveImage(newIm);
 
-        assertNotNull("Image not saved", imageRepository.getById(newId));
+        assertNotNull("Image not saved", imageRepository.getById(newIm.getId()));
 
         Image savedImage = imageRepository.getById(newIm.getId());
         savedImage.setCategory("2");
