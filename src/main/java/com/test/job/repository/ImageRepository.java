@@ -9,7 +9,7 @@ public interface ImageRepository  {
 
     List<Image> getAllImage();
 
-    Integer saveImage(Image image);
+    void saveImage(Image image);
 
     Image getById(Integer id);
 

@@ -23,10 +23,9 @@ import static org.junit.Assert.assertNull;
 @ContextConfiguration(classes = Application.class)
 public class ImageRepositoryImplTest {
     private static Image newIm = Image.builder()
-            .id(1)
-            .category("1")
-            .description("wow")
-            .title("ere")
+            .category("testCategory")
+            .description("testDescription")
+            .title("testTitle")
             .build();
 
     @Autowired
@@ -36,9 +35,9 @@ public class ImageRepositoryImplTest {
     public void TestCrudImage() {
 
         assertNull("Image is present ", imageRepository.getById(newIm.getId()));
-        Integer newId = imageRepository.saveImage(newIm);
+        imageRepository.saveImage(newIm);
 
-        assertNotNull("Image not saved", imageRepository.getById(newId));
+        assertNotNull("Image not saved", imageRepository.getById(newIm.getId()));
 
         Image savedImage = imageRepository.getById(newIm.getId());
         savedImage.setCategory("2");

@@ -3,7 +3,6 @@ package com.test.job;
 import com.test.job.entity.Image;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,15 +17,13 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@ComponentScan(value = "com.test.job")
 @EnableTransactionManagement
-@ComponentScan({"com.test.job"})
 @PropertySource(value = {"classpath:application.properties"})
 public class HibernateConfiguration {
 
     @Autowired
     private Environment environment;
-
-
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -61,7 +58,6 @@ public class HibernateConfiguration {
     public HibernateTransactionManager hibernateTransactionManager(SessionFactory sessionFactory){
         return new HibernateTransactionManager(sessionFactory);
     }
-
 }
 
 
