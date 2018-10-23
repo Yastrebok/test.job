@@ -10,8 +10,8 @@
     <title>Create user</title>
 </head>
 <body>
-<form name="Image"  modelAttribute="fileBucket" action="/image/add" method="post" enctype="multipart/form-data">
-    <table class="table table-striped">
+<form name="Image" action="/image/add" method="POST" enctype="multipart/form-data">
+    <table>
         <thead>
         <tr>
             <th>Title</th>
@@ -22,14 +22,10 @@
         </thead>
         <tbody>
         <tr>
-            <td><input title="Title" type="text" name="title" class="form-control input-sm"></td>
-
-            <td><input title="Description" type="text" name="description" class="form-control input-sm"></td>
-
-            <td><input title="Category" type="text" name="category" class="form-control input-sm"></td>
-
-            <td><input title="Image" type="file" name="image" class="form-control input-sm"></td>
-
+            <td><input title="Title" type="text" name="title"></td>
+            <td><input title="Description" type="text" name="description"></td>
+            <td><input title="Category" type="text" name="category"></td>
+            <td><input title="Image" type="file" name="image"></td>
         </tr>
         </tbody>
 

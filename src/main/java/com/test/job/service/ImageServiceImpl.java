@@ -4,28 +4,29 @@ import com.test.job.entity.Image;
 import com.test.job.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class ImageServiceImpl implements ImageService {
 
     @Autowired
     private ImageRepository imageRepository;
 
     @Override
-    public List<Image> getAllImage() {
-        return imageRepository.getAllImage();
+    public List<ImageDao> getAllImage() {
+        return imageRepository.getAllImage().stream()
+                .map(this::convertToDao)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void saveImage(Image image) {
-        imageRepository.saveImage(image);
+    public void saveImage(MultipartFile file, String title, String description, String category) {
+        imageRepository.saveImage(convertToImage(file, title, description, category, 0));
     }
 
     @Override
@@ -34,78 +35,37 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public void updateImage(ImageDao image) {
-        imageRepository.updateImage(convertToImage(image));
+    public void updateImage(MultipartFile file, String title, String description, String category,Integer id) {
+        imageRepository.updateImage(convertToImage(file, title, description, category, id));
     }
 
     @Override
-    public void deleteImage(ImageDao image) {
-        imageRepository.deleteImage(convertToImage(image));
+    public void deleteImage(Integer id) {
+        imageRepository.deleteImage(imageRepository.getById(id));
     }
 
-        private Image convertToImage(ImageDao imageDao) {
-            Image newImage = null;
+    private Image convertToImage(MultipartFile file, String title, String description, String category,Integer id) {
+        Image newImage = null;
         try {
-                newImage = Image.builder()
-                        .id(imageDao.getId())
-                        .title(imageDao.getTitle())
-                        .description(imageDao.getDescription())
-                        .category(imageDao.getCategory())
-                        .image( imageDao.getImages().getBytes())
-    //                    .image(newBlob(imageDao.getImages()))
-                        .build();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return newImage;
+            newImage = Image.builder()
+                    .id(id)
+                    .title(title)
+                    .description(description)
+                    .category(category)
+                    .image(file.getBytes())
+                    .build();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-//    private Blob newBlob(MultipartFile image) {
-//        Blob blob = new Blob() {
-//            @Override
-//            public OutputStream setBinaryStream(long pos) throws SQLException {
-//                return null;
-//            }
-//
-//        };
-//        try {
-//            return blob.setBinaryStream( image);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-//    private Blob newBlob(byte[] image) {
-//        Blob blob = new Blob() {
-//            @Override
-//            public OutputStream setBinaryStream(long pos) throws SQLException {
-//                return null;
-//            }
-//
-//        };
-//        try {
-//            return blob.setBinaryStream( image);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+        return newImage;
+    }
 
     private ImageDao convertToDao(Image image) {
-            return ImageDao.builder()
-                    .id(image.getId())
-                    .title(image.getTitle())
-                    .description(image.getDescription())
-                    .category(image.getCategory())
-//                    .image(convertToByte(image.getImage()))
-                    .build();
-        }
-
-    private byte[] convertToByte(Blob image) {
-        try {
-            return image.getBytes(0, (int) image.length());
-        } catch (SQLException e) {
-            return new byte[1];
-        }
+        return ImageDao.builder()
+                .id(image.getId())
+                .title(image.getTitle())
+                .description(image.getDescription())
+                .category(image.getCategory())
+                .build();
     }
 }

@@ -8,12 +8,17 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Menu</h1>
-
+<h1 align="center">Greeting You!</h1>
 
 <a role="button" class="btn btn-primary" href="/image/all">Image List</a>
 <a role="button" class="btn btn-secondary" href="/image/add">Add image</a>
 
+<p></p>
+<div class="form-group">
+    <p> Click "Image List" that looking for list of Images</p>
+    <p> Click "Add image" if you want to add new image to list.</p>
+    <p>Please, make you choose. </p>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

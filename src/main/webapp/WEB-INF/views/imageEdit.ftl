@@ -9,23 +9,32 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Edit Image</title>
 </head>
-<body>
-<form action="/image/update" method="post">
-    <p>Id</p>
-    <input title="Id" type="text" name="id" value="${image.id}">
-    <p>Title</p>
-    <input title="Title" type="text" name="title" value="${image.title}">
-    <p>Description</p>
-    <input title="Description" type="text" name="description" value="${image.description}">
-    <p>Category</p>
-    <input title="Category" type="text" name="category" value="${image.category}">
-    <p>Image</p>
-    <input title="Image" type="text" name="image" value="${image.image}">
-    <br>
+<body class="form-group">
+<form action="/image/update" method="POST" enctype="multipart/form-data" class="form-group">
+    <table class="table table-bordered table-hover">
+        <tbody>
+        <tr>
+            <th>Title</th>
+            <td><input title="Title" type="text" name="title"></td>
+        <tr>
+            <th>Description</th>
+            <td><input title="Description" type="text" name="description"></td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td><input title="Category" type="text" name="category"></td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><input title="Image" type="file" name="image"></td>
+        </tr>
+        </tbody>
 
-    <button class="btn btn-primary" type="submit">OK</button>
-    <a role="button" class="btn btn-secondary" href="/image/all">Cancel</a>
-
+    </table>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">OK</button>
+        <a role="button" class="btn btn-secondary" href="/image/all">Cancel</a>
+    </div>
 
 
 </form>

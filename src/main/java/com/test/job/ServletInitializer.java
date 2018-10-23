@@ -11,12 +11,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 @Configuration
-
 public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(Application.class);
+		return application.sources(Application.class, WebConfig.class, HibernateConfiguration.class);
 	}
 
 	@Override
@@ -28,7 +27,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(context));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
-
 	}
 
 }

@@ -3,9 +3,11 @@ package com.test.job.repository;
 import com.test.job.entity.Image;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public class ImageRepositoryImpl extends AbstractRepository<Integer, Image> implements ImageRepository {
 
     @Override
@@ -32,6 +34,6 @@ public class ImageRepositoryImpl extends AbstractRepository<Integer, Image> impl
 
     @Override
     public void deleteImage(Image image) {
-        getSession().delete(image);
+        delete(image);
     }
 }

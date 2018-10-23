@@ -1,6 +1,5 @@
 package com.test.job.service;
 
-import com.test.job.entity.Image;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,15 +8,15 @@ import java.util.List;
 
 public interface ImageService {
 
-    List<Image> getAllImage();
+    List<ImageDao> getAllImage();
 
-    void saveImage(Image image);
+    void saveImage(MultipartFile file, String title, String description, String category);
 
     ImageDao getById(Integer id);
 
-    void updateImage(ImageDao image);
+    void updateImage(MultipartFile file, String title, String description, String category, Integer id);
 
-    void deleteImage(ImageDao image);
+    void deleteImage(Integer id);
 
     @Data
     @Builder
@@ -27,7 +26,6 @@ public interface ImageService {
         private String title;
         private String description;
         private String category;
-        private byte[] image;
         private MultipartFile images;
     }
 }

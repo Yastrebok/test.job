@@ -10,13 +10,13 @@
     <title>Images</title>
 </head>
 <body>
-<div>
-    <a role="button" class="btn btn-primary" href="/menu">Menu</a>
+<div class = form-inline>
+    <a role="button" class="btn btn-primary" href="/">Menu</a>
     <a role="button" class="btn btn-secondary" href="/image/add">Add image</a>
     <a role="button" class="btn btn-secondary" href="/image/all">Refresh</a>
 
     <nav class="navbar navbar-light bg-faded">
-        <form class="form-inline img-t border border-dark ">
+        <form class="form-inline img-t">
             <div class="input-group">
   	  <span class="input-group-addon" id="basic-addon3">
   	  	<select name="myChose" class="custom-select" id="setChoose">

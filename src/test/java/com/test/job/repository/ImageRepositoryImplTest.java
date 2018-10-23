@@ -23,10 +23,9 @@ import static org.junit.Assert.assertNull;
 @ContextConfiguration(classes = Application.class)
 public class ImageRepositoryImplTest {
     private static Image newIm = Image.builder()
-            .id(1)
-            .category("1")
-            .description("wow")
-            .title("ere")
+            .category("testCategory")
+            .description("testDescription")
+            .title("testTitle")
             .build();
 
     @Autowired

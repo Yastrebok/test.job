@@ -10,11 +10,6 @@ public class MainController {
 
     @GetMapping("/")
     public String index() {
-        return "/WEB-INF/index";
-    }
-
-    @GetMapping("/menu")
-    public String menu() {
         return "menu";
     }
 }

@@ -3,7 +3,7 @@ package com.test.job;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -15,13 +15,13 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @ComponentScan(basePackages = "com.test.job")
 public class WebConfig extends WebMvcConfigurationSupport {
 
-    @Bean(name="multipartResolver")
-    public StandardServletMultipartResolver resolver(){
-        return new StandardServletMultipartResolver();
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver resolver() {
+        return new CommonsMultipartResolver();
     }
 
     @Bean
-    public ViewResolver getViewResolver(){
+    public ViewResolver getViewResolver() {
         FreeMarkerViewResolver freeMarkerViewResolver = new FreeMarkerViewResolver();
         freeMarkerViewResolver.setOrder(1);
         freeMarkerViewResolver.setSuffix(".ftl");
@@ -30,9 +30,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public FreeMarkerConfigurer getFreeMarkerConfigurer(){
+    public FreeMarkerConfigurer getFreeMarkerConfigurer() {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
-        freeMarkerConfigurer.setTemplateLoaderPaths("/","/WEB-INF/views/");
+        freeMarkerConfigurer.setTemplateLoaderPaths("/", "/WEB-INF/views/");
         return freeMarkerConfigurer;
     }
 }
